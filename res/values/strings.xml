@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">S2Parking</string>
+    <string name="app_city">Treinamento</string>
+    <string name="empty"></string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="logo">logo</string>
+    
+    <!-- MenuApp - Title -->
+    <string name="menu_title_recharge">Recarga</string>
+    <string name="menu_title_park">Estacionar</string>
+    <string name="menu_title_history">Histórico</string>
+    <string name="menu_title_find_spot">Localizar Vaga</string>
+    <string name="menu_title_plates">Placas</string>
+    <string name="menu_title_logout">Sair</string>
+    <!-- MenuApp - SubTitle -->
+    <string name="menu_subtitle_recharge">Adquerir créditos de estacionamento</string>
+    <string name="menu_subtitle_park">Comprar Períodos</string>
+    <string name="menu_subtitle_history">Histórico de períodos e irregularidades</string>
+    <string name="menu_subtitle_find_spot">Vagas disponíveis</string>
+    <string name="menu_subtitle_plates">Adicionar e remover placas</string>
+    <string name="menu_subtitle_logout">Sair do aplicativo</string>
+    <!-- Questions -->
+	<string name="question_interrupt_ticket">Deseja realmente interromper este período? </string>
+	<string name="question_logoff">Deseja realmente sair do aplicativo? </string>
+	<string name="question_cancel_ticket">Tem certeza que deseja cancelar a compra de período ?</string>
+	<string name="question_buy_ticket">Deseja efetuar a compra para a placa XXX na área YYY ?</string>
+	<string name="question_remove_plate">Deseja remover a(s) placa(s) selecionada(s) ?</string>
+	<!-- Warnings -->
+	<string name="warning_interrupt_ticket">A devolução no valor de XXX será efetuada dentro de alguns instantes. Se o valor não for creditado, entre em contato com o SAC do seu município</string>
+	<!-- Confirmation -->
+	<string name="confirmation">Confirmação</string>
+	<string name="confirmation_buy_ticket">Compra de período efetuada com sucesso!</string>
+	<string name="confirmation_remove_plate">Placa(s) removida(s) com sucesso.</string>
+	<string name="confirmation_add_plate">Placa XXX cadastrada com sucesso.</string>
+    <!-- Titles -->
+    <string name="title_add_plate">Informe sua placa</string>
+    <!-- Errors -->
+    <string name="error_get_active_tickets">Ocorreu um erro ao buscar os tickets ativos. Motivo: XXX</string>
+    <string name="error_invalid_plate">Placa inválida</string>
+    
+    
+    
+    
+    
+    <string name="period_purchase">Compra de período</string>
+    <string name="title_activity_park">ParkActivity</string>
+    <string name="area">Área</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_history">LoginActivity</string>
+    <string name="user">Usuário</string>
+    <string name="password">Senha</string>
+    <string name="signin">Logar</string>
+    <string name="app_version">v1.46.00</string>
+    <string name="please_wait">Por favor. Aguarde</string>
+    <string name="cpf_cnpj">Cpf / Cnpj</string>
+    <string name="time">Tempo</string>
+    <string name="type">Tipo</string>
+    <string name="type_irregularity">Tipo Irreg.</string>
+    <string name="plate">Placa</string>
+    
+    <string name="initial_date">Data Inicial</string>
+    <string name="final_date">Data Final</string>    
+	<string name="situation">Situação</string>
+	<string name="value">Valor</string>
+	<string name="payment_method">Forma de pagamento</string>
+	<string name="payment">Pagamento</string>
+	<string name="buy">Comprar</string>
+	<string name="cancel">Cancelar</string>
+	<string name="warning">Aviso</string>
+	<string name="question">Confirmação</string>
+	
+	<string name="stop_period">Interromper período</string>
+	<string name="select_areas">Selecione uma área.</string>
+	<string name="add">Adicionar</string>
+	<string name="remove">Remover</string>
+	<string name="car">Carro</string>
+	<string name="motorcycle">Moto</string>
+	<string name="foreign">Estrangeiro</string>
+	
+	<string name="login_hint">E-mail, fone ou CPF/CNPJ</string>	
+	
+
+	
+	
+	
+</resources>
