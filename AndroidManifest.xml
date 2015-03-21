@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="21" />
     
     <!-- TODO: Replace "com.example.hellomap" with your package name -->
@@ -34,7 +34,7 @@
     
     
     <application
-        android:name="com.s2parking.utils.Application"
+        android:name="com.panfletovia.utils.Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -51,17 +51,17 @@
 			android:value="1" />
         
         <activity
-            android:name=".MainActivity"
+            android:name="com.panfletovia.activities.MainActivity"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize">
         </activity>
         <activity
-            android:name=".ParkActivity"
+            android:name="com.panfletovia.activities.ParkActivity"
             android:label="@string/title_activity_park" 
             android:configChanges="orientation|screenSize">
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.panfletovia.activities.LoginActivity"
             android:label="@string/app_name" 
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -70,27 +70,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HistoryActivity"
+            android:name="com.panfletovia.activities.HistoryActivity"
             android:label="@string/title_activity_history"
             android:configChanges="orientation|screenSize">
         </activity>
         <activity
-            android:name=".FullHistoryActivity"
+            android:name="com.panfletovia.activities.FullHistoryActivity"
             android:label="@string/title_activity_history" 
             android:configChanges="orientation|screenSize">
         </activity>
         <activity
-            android:name=".FindSpotActivity"
+            android:name="com.panfletovia.activities.FindSpotActivity"
             android:label="@string/app_name" 
             android:configChanges="orientation|screenSize">
         </activity>
         <activity
-            android:name=".PlatesActivity"
+            android:name="com.panfletovia.activities.PlatesActivity"
             android:label="@string/app_name" 
             android:configChanges="orientation|screenSize">
         </activity>
         <service 
-            android:name="com.s2parking.service.TicketsService"
+            android:name="com.panfletovia.service.TicketsService"
             android:stopWithTask="true"/>
     </application>
 
