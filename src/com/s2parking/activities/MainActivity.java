@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.gms.internal.ci;
 import com.s2parking.bean.MainItem;
 import com.s2parking.enums.AppMenu;
 import com.s2parking.enums.Constants;
