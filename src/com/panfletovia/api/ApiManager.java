@@ -180,19 +180,12 @@ public class ApiManager extends AsyncTask<String, Void, Boolean>{
 	 * @throws JSONException
 	 */
 	private void getParamsDefault() throws JSONException {
-		long nsu = configuration.currentNSU();
 		String serial = Utils.getDeviceId();
 		int version = getAppVersionToAPI();
 		
-		nsu++;
-		
-		configuration.set("nsu", nsu + "");
-		
-		ojbParams.put(Constants.API_DEFAULT_API_KEY, generateKey(nsu, serial));
 		ojbParams.put(Constants.API_DEFAULT_VERSION, version);
 		ojbParams.put(Constants.API_DEFAULT_DATETIME, dateTimeFormat.format(new Date()));
 		ojbParams.put(Constants.API_DEFAULT_MODEL, Constants.ANDROID);
-		ojbParams.put(Constants.API_DEFAULT_NSU, nsu);
 		ojbParams.put(Constants.API_DEFAULT_SERIAL, serial);
 		ojbParams.put(Constants.API_DEFAULT_TYPE, Constants.ANDROID);
 		ojbParams.put(Constants.API_DEFAULT_CLIENT, "1");
