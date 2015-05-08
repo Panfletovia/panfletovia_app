@@ -1,8 +1,9 @@
 package com.panfletovia.activities;
 
-import com.panfletovia.R;
-
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,8 +16,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainActivity extends ActionBarActivity implements
-		NavigationDrawerFragment.NavigationDrawerCallbacks {
+import com.panfletovia.R;
+import com.panfletovia.base.ConfigurationManager;
+import com.panfletovia.base.Dialogs;
+import com.panfletovia.fragments.MainFragment;
+import com.panfletovia.fragments.MyPamphletsFragment;
+import com.panfletovia.fragments.PreferenciasFragment;
+import com.panfletovia.type.Constants;
+
+
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+	
+	private Dialogs dialogs;
+	private ConfigurationManager configuration;
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -34,38 +46,66 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		dialogs = new Dialogs(this);
+		configuration = ConfigurationManager.get();
 
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 
 		// Set up the drawer.
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-				(DrawerLayout) findViewById(R.id.drawer_layout));
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		// update the main content by replacing fragments
+		
+		Fragment fragmentObject = null;
+		
+		switch (position) {
+			case 0: // INICIO
+				fragmentObject = new MainFragment();
+				break;
+			case 1: // MEUS PANFLETOS
+				fragmentObject = new MyPamphletsFragment();
+				break;
+			case 2: // PREFERÊNCIAS
+				fragmentObject = new PreferenciasFragment();
+				break;
+			case 3: // SAIR
+				dialogs.confirm(getString(R.string.logout_title), getString(R.string.logout_message), new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						configuration.set(Constants.PREFERENCES_KEEP_LOGGED_IN, false);
+						startActivity(new Intent(MainActivity.this, LoginActivity.class));
+						finish();
+					}
+				});
+				return;
+		}
+		
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager
 				.beginTransaction()
-				.replace(R.id.container,
-						PlaceholderFragment.newInstance(position + 1)).commit();
+				.replace(R.id.container, fragmentObject)
+				.commit();
 	}
 
 	public void onSectionAttached(int number) {
-		switch (number) {
-		case 1:
-			mTitle = getString(R.string.title_section1);
-			break;
-		case 2:
-			mTitle = getString(R.string.title_section2);
-			break;
-		case 3:
-			mTitle = getString(R.string.title_section3);
-			break;
-		}
+		System.out.println(number);
+		System.out.println(number);
+		
+//		switch (number) {
+//		case 1:
+//			mTitle = getString(R.string.title_section1);
+//			break;
+//		case 2:
+//			mTitle = getString(R.string.title_section2);
+//			break;
+//		case 3:
+//			mTitle = getString(R.string.title_section3);
+//			break;
+//		}
 	}
 
 	public void restoreActionBar() {
@@ -125,19 +165,15 @@ public class MainActivity extends ActionBarActivity implements
 		}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 			return rootView;
 		}
 
 		@Override
 		public void onAttach(Activity activity) {
 			super.onAttach(activity);
-			((MainActivity) activity).onSectionAttached(getArguments().getInt(
-					ARG_SECTION_NUMBER));
+			((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
 		}
 	}
-
 }

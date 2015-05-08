@@ -15,7 +15,7 @@ public @interface Field {
 	// Se o campo é ou não requerido
 	boolean required() default false;
 	
-	// Se o campo deve ter um tamanho mínimo de caracteres (zero significa que não possui tamanho mínimo)
+//	// Se o campo deve ter um tamanho mínimo de caracteres (zero significa que não possui tamanho mínimo)
 //	int minLength() default 0;
 
 	//Id do recurso da mensagem

@@ -1,4 +1,4 @@
-package com.panfletovia.utils;
+package com.panfletovia.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;

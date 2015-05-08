@@ -23,8 +23,8 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
+import com.panfletovia.base.ConfigurationManager;
 import com.panfletovia.type.HttpMethod;
-import com.panfletovia.utils.ConfigurationManager;
 import com.panfletovia.utils.Utils;
 
 
@@ -40,24 +40,22 @@ public class ApiManager extends AsyncTask<String, Void, Boolean>{
 	private HttpRequestBase httpRequest;
 	private JSONObject response;
 	private ConfigurationManager configuration;
-	private final SimpleDateFormat dateTimeFormat;
+//	private final SimpleDateFormat dateTimeFormat;
 	protected int responseStatus;
 	private final ReentrantLock lock = new ReentrantLock();
 
 	public ApiManager(String controller, HttpMethod httpMethod, ApiListener apiListener) {
-		configuration = ConfigurationManager.get();
-		this.URI = configuration.getString("URL_BASE") + "/" + controller + ".json"; 
+		this.URI = URL.BASE + "/" + controller + ".json"; 
 		this.httpMethod = httpMethod;
 		this.apiListener = apiListener;
-		dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//		dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 	}
 	
 	public ApiManager(String controller, String action, HttpMethod httpMethod, ApiListener apiListener) {
-		configuration = ConfigurationManager.get();
-		this.URI = configuration.getString("URL_BASE") + "/" + controller + "/" + action + ".json";
+		this.URI = URL.BASE + "/" + controller + "/" + action + ".json";
 		this.httpMethod = httpMethod;
 		this.apiListener = apiListener;
-		dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//		dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 	}
 			
 	@Override

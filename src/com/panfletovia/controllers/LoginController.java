@@ -1,22 +1,22 @@
 package com.panfletovia.controllers;
 
-import java.net.URL;
-
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.SyncStateContract.Constants;
 
 import com.panfletovia.activities.MainActivity;
 import com.panfletovia.api.ApiListener;
 import com.panfletovia.api.ApiManager;
-import com.panfletovia.utils.ConfigurationManager;
-import com.panfletovia.utils.Dialogs;
+import com.panfletovia.api.URL;
+import com.panfletovia.base.ConfigurationManager;
+import com.panfletovia.base.Dialogs;
+import com.panfletovia.type.Fields;
+import com.panfletovia.type.HttpMethod;
 import com.panfletovia.utils.Utils;
 
 /**
- * Controller responsável por validar o login do usuário e salvar nas preferêrencias algumas informações
+ * Controller responsï¿½vel por validar o login do usuï¿½rio e salvar nas preferï¿½rencias algumas informaï¿½ï¿½es
  * @author desenv03
  *
  */
@@ -33,15 +33,15 @@ public class LoginController implements ApiListener {
 	}
 	
 	/**
-	 * Efetua a autenticação do usuário.
+	 * Efetua a autenticaï¿½ï¿½o do usuï¿½rio.
 	 * @param user
 	 * @param password
 	 */
 	public void signin(String user, String password) {
-//		ApiManager apiManager = new ApiManager(URL.CONTROLLER.AUTHORIZATION, HttpMethod.POST, this);
-//		apiManager.addParam(Fields.USERNAME, user);
-//		apiManager.addParam(Fields.PASSWORD, password);
-//		apiManager.execute();
+		ApiManager apiManager = new ApiManager(URL.CONTROLLER.AUTHORIZATION, HttpMethod.POST, this);
+		apiManager.addParam(Fields.LOGIN, user);
+		apiManager.addParam(Fields.PASSWORD, password);
+		apiManager.execute();
 	}	
 	
 	@Override

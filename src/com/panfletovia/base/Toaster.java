@@ -1,4 +1,4 @@
-package com.panfletovia.utils;
+package com.panfletovia.base;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -24,7 +24,7 @@ public class Toaster {
 	public Toaster(Context context) {
 		this.context = context;
 	}
-
+	
 	/**
 	 * Exibe uma mensagem rápida (Toast.LENGTH_SHORT)
 	 * 

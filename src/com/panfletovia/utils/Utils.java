@@ -57,7 +57,53 @@ import com.panfletovia.annotation.Field;
 
 public class Utils {
 
-	private static NotificationManager notificationManager;
+//	private static NotificationManager notificationManager;
+	
+	/**
+	 * Validação de erros retornados pela API.
+	 * 
+	 * @param activity
+	 * @param response
+	 * @throws JSONException
+	 */
+	public static void validationErros(Activity activity, JSONObject response) throws JSONException {
+		// Verifica se ocorreu o erro de nsu.
+		// Se ocorreu salva nas preferências o nsu de retorno.
+		if (response != null) {
+			// Se existe codigo_erro.
+			if (response.has("code")) {
+				Toast.makeText(activity, response.get("name").toString(),Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(activity, response.toString(), Toast.LENGTH_LONG).show();
+			}
+		} else {
+			Toast.makeText(
+					activity,
+					"Ocorreu um erro na comunicação com o servidor!!! Por favor, tente novamente.",
+					Toast.LENGTH_LONG).show();
+		}
+	}
+
+
+	public static void validationErrors (Activity activity, String error) {
+		if (activity == null || error.isEmpty()) {
+			Toast.makeText(activity, "Ocorreu um erro na comunicação com o serivdor! Por favor, tente novamente em alguns instântes.", Toast.LENGTH_LONG).show();
+		}
+		
+		Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Verifica se o dado endereco MAC (com mascara) eh valido
 	 * 
@@ -157,9 +203,7 @@ public class Utils {
 	 * @param activity
 	 * @throws IllegalAccessException
 	 */
-	public static void initializeFields(Activity activity,
-			Class<? extends Activity> activityClass)
-			throws IllegalAccessException {
+	public static void initializeFields(Activity activity, Class<? extends Activity> activityClass) throws IllegalAccessException {
 		for (java.lang.reflect.Field campo : activityClass.getDeclaredFields()) {
 			campo.setAccessible(true);
 			if (campo.isAnnotationPresent(Field.class)
@@ -196,8 +240,7 @@ public class Utils {
 				} else if (campo.getType().equals(SurfaceView.class)) {
 					campo.set(activity, (SurfaceView) activity.findViewById(id));
 				} else if (campo.getType().equals(TimePicker.class)) {
-					final TimePicker timePicker = ((TimePicker) activity
-							.findViewById(id));
+					final TimePicker timePicker = ((TimePicker) activity.findViewById(id));
 					// TimePicker com formato 24 horas.
 					timePicker.setIs24HourView(true);
 					campo.set(activity, timePicker);
@@ -224,8 +267,7 @@ public class Utils {
 		}
 	}
 
-	public static boolean validateRequiredFields(Activity activity)
-			throws Exception {
+	public static boolean validateRequiredFields(Activity activity) throws Exception {
 		return validateRequiredFields(activity, activity.getClass());
 	}
 
@@ -237,27 +279,20 @@ public class Utils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean validateRequiredFields(Activity activity,
-			Class<? extends Activity> activityClass) throws Exception {
+	public static boolean validateRequiredFields(Activity activity, Class<? extends Activity> activityClass) throws Exception {
 		boolean isValido = true;
 		EditText edit = null;
 		for (java.lang.reflect.Field campo : activityClass.getDeclaredFields()) {
 			campo.setAccessible(true);
-			if (campo.isAnnotationPresent(Field.class)
-					&& campo.getAnnotation(Field.class).required()) {
+			if (campo.isAnnotationPresent(Field.class) && campo.getAnnotation(Field.class).required()) {
 				if (campo.getType().equals(EditText.class)) {
 					edit = (EditText) campo.get(activity);
-					if (edit.getText() == null
-							|| edit.getText().toString().trim()
-									.equalsIgnoreCase("")) {
+					if (edit.getText() == null || edit.getText().toString().trim().equalsIgnoreCase("")) {
 						isValido = false;
 					}
-
 				} else if (campo.getType().equals(Spinner.class)) {
 					Spinner spinner = (Spinner) campo.get(activity);
-					if (spinner.getSelectedItem() == null
-							|| spinner.getSelectedItem().toString().trim()
-									.equalsIgnoreCase("")) {
+					if (spinner.getSelectedItem() == null || spinner.getSelectedItem().toString().trim().equalsIgnoreCase("")) {
 						isValido = false;
 					}
 				}
@@ -436,39 +471,7 @@ public class Utils {
 		return passToken;
 	}
 
-	/**
-	 * Validação de erros retornados pela API.
-	 * 
-	 * @param activity
-	 * @param response
-	 * @throws JSONException
-	 */
-	public static void validationErros(Activity activity, JSONObject response)
-			throws JSONException {
-		// Verifica se ocorreu o erro de nsu.
-		// Se ocorreu salva nas preferências o nsu de retorno.
-		if (response != null) {
-			// Se existe codigo_erro.
-			if (response.has("codigo_erro")) {
-				int codigoErro = response.getInt("codigo_erro");
-				if (codigoErro == 60) {
-					ConfigurationManager.get().set("nsu",
-							response.get("nsu").toString());
-				}
-				Toast.makeText(activity, response.get("name").toString(),
-						Toast.LENGTH_LONG).show();
-			} else {
-				Toast.makeText(activity, response.toString(), Toast.LENGTH_LONG)
-						.show();
-			}
-		} else {
-			Toast.makeText(
-					activity,
-					"Ocorreu um erro na comunicação com o servidor!!! Por favor, tente novamente.",
-					Toast.LENGTH_LONG).show();
-		}
-	}
-
+	
 	/**
 	 * Converte um Map<String, Object> para um List<NameValuePair>.
 	 * 
@@ -477,8 +480,7 @@ public class Utils {
 	 * @param params
 	 * @return
 	 */
-	public static List<NameValuePair> mapToNameValuePairList(JSONObject params)
-			throws JSONException {
+	public static List<NameValuePair> mapToNameValuePairList(JSONObject params) throws JSONException {
 		List<NameValuePair> list = new ArrayList<NameValuePair>();
 		Iterator<String> i = params.keys();
 		while (i.hasNext()) {
@@ -534,36 +536,36 @@ public class Utils {
 		return map;
 	}
 	
-	/**
-	 * Método para criar uma notificação na barra de status 
-	 */
-	@SuppressLint("NewApi")
-	public static void sendNotification(Context context, Class<?> startClass, String title, String description, int icon, int idTicket) {
-		// Busca instância do objeto que controla as notificações do aparelho
-		notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		// Intent do click da notificação
-		Intent startActivityIntent = new Intent(context, startClass);
-		PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, startActivityIntent, 0);
-		// Cria a notificação 
-		Notification.Builder builder = new Notification.Builder(context);
-		builder.setSmallIcon(icon);
-		builder.setContentTitle(title);
-		builder.setContentText(description);
-		builder.setLights(Color.RED, 3000, 3000);
-		builder.setVibrate(new long[] { 1000 ,1000 ,1000 ,1000 ,1000});
-		builder.setContentIntent(pendingIntent);
-		notificationManager.notify(idTicket, builder.getNotification());
-
-	}// End Method 'sendNotification'
-	
-	
-	/**
-	 * Método para cancelar a notificação na barra de status
-	 * @param id - Ticket Id
-	 */
-	public static void cancelNotification(int id) {
-		notificationManager.cancel(id);
-	}// End Method 'cancelNotification'
+//	/**
+//	 * Método para criar uma notificação na barra de status 
+//	 */
+//	@SuppressLint("NewApi")
+//	public static void sendNotification(Context context, Class<?> startClass, String title, String description, int icon, int idTicket) {
+//		// Busca instância do objeto que controla as notificações do aparelho
+//		notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+//		// Intent do click da notificação
+//		Intent startActivityIntent = new Intent(context, startClass);
+//		PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, startActivityIntent, 0);
+//		// Cria a notificação 
+//		Notification.Builder builder = new Notification.Builder(context);
+//		builder.setSmallIcon(icon);
+//		builder.setContentTitle(title);
+//		builder.setContentText(description);
+//		builder.setLights(Color.RED, 3000, 3000);
+//		builder.setVibrate(new long[] { 1000 ,1000 ,1000 ,1000 ,1000});
+//		builder.setContentIntent(pendingIntent);
+//		notificationManager.notify(idTicket, builder.getNotification());
+//
+//	}// End Method 'sendNotification'
+//	
+//	
+//	/**
+//	 * Método para cancelar a notificação na barra de status
+//	 * @param id - Ticket Id
+//	 */
+//	public static void cancelNotification(int id) {
+//		notificationManager.cancel(id);
+//	}// End Method 'cancelNotification'
 	
 	/**
 	 * Seta o título da activity.

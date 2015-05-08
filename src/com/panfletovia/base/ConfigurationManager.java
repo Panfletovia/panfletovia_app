@@ -1,4 +1,4 @@
-package com.panfletovia.utils;
+package com.panfletovia.base;
 
 import java.util.Map;
 
@@ -9,6 +9,10 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+
+import com.panfletovia.R;
+import com.panfletovia.type.Constants;
 
 
 public class ConfigurationManager {
@@ -22,7 +26,7 @@ public class ConfigurationManager {
 	}
 	
 	protected void setup(Context applicationContext) {
-//		preferences = applicationContext.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE);
+		preferences = applicationContext.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE);
 //		PreferenceManager.setDefaultValues(applicationContext, Constants.PREFERENCES_NAME, Context.MODE_PRIVATE, R.xml.preferences, false);
 	}
 	

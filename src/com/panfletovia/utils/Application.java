@@ -1,5 +1,7 @@
 package com.panfletovia.utils;
 
+import com.panfletovia.base.ConfigurationManager;
+
 
 public class Application extends android.app.Application {
 
